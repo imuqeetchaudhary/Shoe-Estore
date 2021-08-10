@@ -49,7 +49,10 @@ exports.profile = promise(async (req, res) => {
     res.status(200).json({
         _id: user._id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        address: user.address,
+        deliveryAddress: user.deliveryAddress,
+        masterCardNumber: user.masterCardNumber
     })
 })
 
