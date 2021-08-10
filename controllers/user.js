@@ -4,15 +4,6 @@ const jwt = require("jsonwebtoken")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
 
-exports.profile = promise(async (req, res) => {
-    const user = await User.findOne({ email: req.user.email })
-    res.status(200).json({
-        _id: user._id,
-        name: user.name,
-        email: user.email
-    })
-})
-
 exports.register = promise(async (req, res) => {
     const emailExists = await User.findOne({ email: req.body.email })
     if (emailExists) throw new Exceptions.EmailExist
@@ -51,4 +42,44 @@ exports.login = promise(async (req, res) => {
         email: user.email,
         isAdmin: user.isAdmin
     })
+})
+
+exports.profile = promise(async (req, res) => {
+    const user = await User.findOne({ email: req.user.email })
+    res.status(200).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email
+    })
+})
+
+exports.updateProfile = promise(async (req, res) => {
+    const body = req.body
+    if (body.password) {
+        const hash = bcrypt.hashSync(body.password, 10)
+        const updateUser = await User.updateOne(
+            { _id: req.user._id },
+            {
+                $set: {
+                    ...body,
+                    password: hash
+                }
+            }
+        )
+    }
+    else {
+        const updateUser = await User.updateOne(
+            { _id: req.user._id },
+            {
+                $set: {
+                    ...body
+                }
+            }
+        )
+    }
+
+    const user = await User.findById(req.user._id)
+    if (!user) throw new Exceptions.NotFound("User not found")
+
+    res.status(200).json({ message: "Successfully updated user", user })
 })

@@ -17,6 +17,18 @@ const userSchema = new schema({
     isAdmin: {
         type: Boolean,
         default: false
+    },
+    address: {
+        type: String,
+        require: true
+    },
+    deliveryAddress: {
+        type: String,
+        require: true
+    },
+    masterCardNumber: {
+        type: String,
+        require: true
     }
 })
 

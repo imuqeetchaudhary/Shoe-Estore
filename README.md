@@ -28,3 +28,18 @@
 ### to view the profile of an authenticated user
 
 - user/profile :get (Protected route. Token required)
+
+### to update user profile
+
+- user/update-profile :patch (Protected route. Token required)
+
+```
+{
+    name:
+    email:
+    password:
+    address:
+    deliveryAddress:
+    masterCardNumber:
+}
+```
