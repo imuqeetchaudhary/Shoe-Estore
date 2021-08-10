@@ -43,3 +43,20 @@
     masterCardNumber:
 }
 ```
+
+## Routes for Articles
+
+### to add a new article
+
+- article/add :post
+
+```
+{
+    name:
+    description:
+    image:
+    style:
+    releaseDate:
+    price:
+}
+```
