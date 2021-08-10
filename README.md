@@ -60,3 +60,17 @@
     price:
 }
 ```
+
+### to get all articles
+
+- article/get-all :get (Protected route. Token required)
+
+### to get a single article
+
+- article/get-single :post (Protected route. Token required)
+
+```
+{
+    articleId:
+}
+```

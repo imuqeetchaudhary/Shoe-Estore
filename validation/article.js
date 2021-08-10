@@ -8,3 +8,7 @@ exports.addArticleSchema = yup.object({
     releaseDate: yup.date().required(),
     price: yup.string().required()
 })
+
+exports.getSingleArticle = yup.object({
+    articleId: yup.string().required()
+})
