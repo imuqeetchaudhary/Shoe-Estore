@@ -6,3 +6,7 @@ exports.addOrderHistorySchema = yup.object({
     shippingAddress: yup.string().required(),
     shippingState: yup.string().required()
 })
+
+exports.confirmPaymentSchema = yup.object({
+    orderHistoryId: yup.string().required()
+})

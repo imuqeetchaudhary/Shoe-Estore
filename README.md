@@ -74,6 +74,7 @@
     articleId:
 }
 ```
+
 ## Routes for Contact Messages
 
 ### to add a new contact message
@@ -97,5 +98,30 @@
 ```
 {
     contactId:
+}
+```
+
+## Routes for Order Histories
+
+### to create a new order history
+
+- order-history/add :post (Protected route. Token required)
+
+```
+{
+    articleId:
+    sizeSelected:
+    shippingAddress:
+    shippingState:
+}
+```
+
+### to confirm payment status
+
+- order-history/confirm-payment :patch (Protected route. Token required)
+
+```
+{
+    orderHistoryId:
 }
 ```

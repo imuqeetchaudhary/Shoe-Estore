@@ -2,6 +2,9 @@ const { OrderHistory } = require("../db/models/orderhistory")
 const { Article } = require("../db/models/article")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
+const stripe = require("stripe")(
+    "sk_test_51J1POvClkiKKoyU1EwrqRkPchsMA2eXdwSeI7VCQiqCOzOVwqOWoWGS8qCEj1fVQA7WCx1nnoeJD3KfPJHEE0XOG00uMs4G6yS"
+)
 
 exports.addHistory = promise(async (req, res) => {
     const body = req.body
@@ -26,6 +29,36 @@ exports.addHistory = promise(async (req, res) => {
         shippingPrice: shippingPrice,
         totalPrice: totalPrice,
     })
+
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: totalPrice * 100,
+        currency: "usd",
+        metadata: {
+            integration_check: "accept_a_payment_for_shoe_estore",
+        },
+        receipt_email: req.user.email,
+        payment_method_types: ["card"],
+    })
+
     await newOrderHistory.save()
-    res.status(200).json({ message: "Successfully created order history", newOrderHistory, article })
+    res.status(200).json({
+        message: "Successfully created order history",
+        client_secret: paymentIntent["client_secret"],
+        newOrderHistory,
+        article
+    })
+})
+
+exports.confirmPayment = promise(async (req, res) => {
+    const body = req.body
+
+    await OrderHistory.updateOne(
+        { _id: body.orderHistoryId },
+        {
+            $set: {
+                isPaid: true
+            }
+        }
+    )
+    res.status(200).json({ message: "Successfully updated payment status of order history" })
 })

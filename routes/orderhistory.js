@@ -3,9 +3,10 @@ const router = express.Router()
 const orderhistory = require("../controllers/orderhistory")
 const { authentication } = require("../middlewares/isAuth")
 const { validation } = require("../middlewares/validation")
-const { addOrderHistorySchema } = require("../validation/orderhistory")
+const { addOrderHistorySchema, confirmPaymentSchema } = require("../validation/orderhistory")
 
 router
     .post("/add", authentication, validation(addOrderHistorySchema), orderhistory.addHistory)
+    .patch("/confirm-payment", authentication, validation(confirmPaymentSchema), orderhistory.confirmPayment)
 
 module.exports = router
