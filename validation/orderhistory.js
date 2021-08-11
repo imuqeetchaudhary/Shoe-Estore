@@ -10,3 +10,7 @@ exports.addOrderHistorySchema = yup.object({
 exports.confirmPaymentSchema = yup.object({
     orderHistoryId: yup.string().required()
 })
+
+exports.getSingleSchema = yup.object({
+    orderHistoryId: yup.string().required()
+})

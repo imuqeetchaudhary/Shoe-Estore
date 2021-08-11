@@ -62,3 +62,24 @@ exports.confirmPayment = promise(async (req, res) => {
     )
     res.status(200).json({ message: "Successfully updated payment status of order history" })
 })
+
+exports.getAllHistories = promise(async (req, res) => {
+    const orderhistory = await OrderHistory.find()
+    if (!orderhistory) throw new Exceptions.NotFound("No receipt found")
+    res.status(200).json({ orderhistory })
+})
+
+exports.getAllHistoriesForAnySpecificUser = promise(async (req, res) => {
+    const orderhistory = await OrderHistory.find({ userId: req.user._id })
+    if (!orderhistory) throw new Exceptions.NotFound("No receipt found")
+    res.status(200).json({ orderhistory })
+})
+
+exports.getSingleHistory = promise(async (req, res) => {
+    const body = req.body
+
+    const orderhistory = await OrderHistory.findById(body.orderHistoryId)
+    if (!orderhistory) throw new Exceptions.NotFound("No receipt found")
+
+    res.status(200).json({ orderhistory })
+})
