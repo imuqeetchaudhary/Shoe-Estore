@@ -16,7 +16,7 @@ exports.addArticle = promise(async (req, res) => {
 })
 
 exports.getAllArticles = promise(async (req, res) => {
-    const articles = await Article.find()
+    const articles = await Article.find({type: "sneakers"})
     if (!articles) throw new Exceptions.NotFound("No articles found")
 
     res.status(200).json({ articles })

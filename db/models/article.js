@@ -26,6 +26,10 @@ const artcleSchema = new schema({
         type: Date,
         require: true
     },
+    type: {
+        type: String,
+        require: true
+    },
     price: {
         type: Number,
         default: false

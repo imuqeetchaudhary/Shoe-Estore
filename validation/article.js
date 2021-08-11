@@ -5,6 +5,7 @@ exports.addArticleSchema = yup.object({
     description: yup.string().required(),
     image: yup.string().required(),
     style: yup.string().required(),
+    type: yup.string().required(),
     availableSizes: yup.string().required(),
     releaseDate: yup.date().required(),
     price: yup.string().required()

@@ -56,6 +56,7 @@
     description:
     image:
     style:
+    type: (raffle or sneakers)
     availableSizes: (must be an array of sizes i.e. ["6","7","8","9","10"])
     releaseDate:
     price:
