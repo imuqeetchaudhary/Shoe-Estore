@@ -126,3 +126,21 @@
     orderHistoryId:
 }
 ```
+
+### to get all order histories
+
+- order-history/get-all :get (Protected route. Token required)
+
+### to get all order histories for a specific authentic user
+
+- order-history/get-all-for-auth-user :get (Protected route. Token required)
+
+### to get a single order history
+
+- order-history/get-single :post (Protected route. Token required)
+
+```
+{
+    orderHistoryId:
+}
+```
