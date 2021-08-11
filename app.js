@@ -3,6 +3,7 @@ const bodyParser = require("body-parser")
 const dbConnect = require("./db/connection");
 const user = require("./routes/user")
 const article = require("./routes/article")
+const contact = require("./routes/contact")
 const cors = require("cors")
 
 dbConnect();
@@ -19,5 +20,6 @@ app.get("/", async (req, res) => {
 
 app.use("/user", user)
 app.use("/article", article)
+app.use("/contact", contact)
 
 module.exports = { app }

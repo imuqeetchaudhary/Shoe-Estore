@@ -74,3 +74,28 @@
     articleId:
 }
 ```
+## Routes for Contact Messages
+
+### to add a new contact message
+
+- contact/add :post
+
+```
+{
+    message:
+}
+```
+
+### to get all contact messages
+
+- contact/get-all :get (Protected route. Token required)
+
+### to get a single contact message
+
+- contact/get-single :post (Protected route. Token required)
+
+```
+{
+    contactId:
+}
+```
