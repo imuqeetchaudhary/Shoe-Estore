@@ -18,6 +18,10 @@ const artcleSchema = new schema({
         type: String,
         require: true
     },
+    availableSizes: [{
+        type: String,
+        require: true
+    }],
     releaseDate: {
         type: Date,
         require: true
