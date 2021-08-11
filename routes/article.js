@@ -8,7 +8,8 @@ const { addArticleSchema, getSingleArticle } = require("../validation/article")
 
 router
     .post("/add", validation(addArticleSchema), upload.single("image"), article.addArticle)
-    .get("/get-all", authentication, article.getAllArticles)
+    .get("/get-raffle", authentication, article.getAllRaffles)
+    .get("/get-all-sneakers", authentication, article.getAllSneakers)
     .post("/get-single", authentication, validation(getSingleArticle), article.getSingleArticle)
     
 module.exports = router

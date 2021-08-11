@@ -63,9 +63,13 @@
 }
 ```
 
-### to get all articles
+### to get a raffle
 
-- article/get-all :get (Protected route. Token required)
+- article/get-raffle :get (Protected route. Token required)
+
+### to get all sneakers
+
+- article/get-all-sneakers :get (Protected route. Token required)
 
 ### to get a single article
 

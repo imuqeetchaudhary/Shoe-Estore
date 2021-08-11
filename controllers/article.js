@@ -15,7 +15,14 @@ exports.addArticle = promise(async (req, res) => {
     res.status(200).json({ message: "successfully added a new article", newArticle })
 })
 
-exports.getAllArticles = promise(async (req, res) => {
+exports.getAllRaffles = promise(async (req, res) => {
+    const articles = await Article.find({ type: "raffle" })
+    if (!articles) throw new Exceptions.NotFound("No articles found")
+
+    res.status(200).json({ articles })
+})
+
+exports.getAllSneakers = promise(async (req, res) => {
     const articles = await Article.find({type: "sneakers"})
     if (!articles) throw new Exceptions.NotFound("No articles found")
 
