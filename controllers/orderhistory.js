@@ -18,7 +18,7 @@ exports.addHistory = promise(async (req, res) => {
 
     if (shippingState == "switzerland") { shippingPrice = 10 }
     else if (shippingState == "liechtenstein") { shippingPrice = 0 }
-    else { throw new Exceptions.BadRequset("Shipping services are not available in this state") }
+    else { throw new Exceptions.BadRequset("Shipping services are not available in this state. Shipping is only available in Switzerland and Liechtenstein.") }
 
     const totalPrice = shippingPrice + article.price + 10
 

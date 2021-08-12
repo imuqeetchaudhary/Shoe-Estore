@@ -19,7 +19,7 @@ exports.addRaffleForm = promise(async (req, res) => {
     if (country == "switzerland") { shippingPrice = 10 }
     else if (country == "liechtenstein") { shippingPrice = 0 }
     else {
-        throw new Exceptions.BadRequset("Shipping services are not available in this state. Shipping is only available in Switzerland and Liechtenstein ")
+        throw new Exceptions.BadRequset("Shipping services are not available in this state. Shipping is only available in Switzerland and Liechtenstein.")
     }
 
     const article = await Article.findById(body.articleId)
