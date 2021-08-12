@@ -197,3 +197,15 @@ User's Route
     instagram:
 }
 ```
+
+### to get all raffles for admin
+
+Admin's Route
+
+- raffle/get-all-for-admin :get (Protected route. Token required)
+
+### to get all raffles for user
+
+User's Route
+
+- raffle/get-all-for-user :get (Protected route. Token required)
