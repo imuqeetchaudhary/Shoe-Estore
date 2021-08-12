@@ -55,3 +55,10 @@ exports.updateArticle = promise(async (req, res) => {
 
     res.status(200).json({ message: "Successfully updated article", article })
 })
+
+exports.deleteArticle = promise(async (req, res) => {
+    const body = req.body
+
+    await Article.deleteOne({ _id: body.articleId })
+    res.status(200).json({ message: "Successfully deleted article" })
+})

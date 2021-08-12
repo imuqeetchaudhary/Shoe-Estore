@@ -89,6 +89,37 @@ User's Route
 }
 ```
 
+### to update an article
+
+Admin's Route
+
+- article/update :patch (Protected route. Token required)
+
+```
+{
+    articleId:
+    name:
+    description:
+    style:
+    type: (raffle or sneakers)
+    availableSizes: (must be an array of sizes i.e. ["6","7","8","9","10"])
+    releaseDate:
+    price:
+}
+```
+
+### to delete an article
+
+Admin's Route
+
+- article/delete :delete (Protected route. Token required)
+
+```
+{
+    articleId:
+}
+```
+
 ## Routes for Contact Messages
 
 ### to add a new contact message

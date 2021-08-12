@@ -13,5 +13,6 @@ router
     .get("/get-all-sneakers", authentication, article.getAllSneakers)
     .post("/get-single", authentication, validation(getSingleArticle), article.getSingleArticle)
     .patch("/update", authentication, validation(updateArticle), article.updateArticle)
-    
+    .delete("/delete", authentication, validation(getSingleArticle), article.deleteArticle)
+
 module.exports = router
