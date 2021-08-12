@@ -233,3 +233,15 @@ User's Route
     raffleId:
 }
 ```
+
+### to confirm a raffle payment
+
+User's Route
+
+- raffle/confirm-payment :patch (Protected route. Token required)
+
+```
+{
+    raffleId:
+}
+```

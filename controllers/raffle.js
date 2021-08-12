@@ -101,3 +101,17 @@ exports.createPaymentIntend = promise(async (req, res) => {
         client_secret: paymentIntent["client_secret"],
     })
 })
+
+exports.confirmPayment = promise(async (req, res) => {
+    const body = req.body
+
+    await Raffle.updateOne(
+        { _id: body.raffleId },
+        {
+            $set: {
+                isPaid: true
+            }
+        }
+    )
+    res.status(200).json({ message: "Successfully updated payment status of raffle" })
+})

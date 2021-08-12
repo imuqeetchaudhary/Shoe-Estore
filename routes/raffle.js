@@ -33,4 +33,10 @@ router
         raffle.createPaymentIntend
     )
 
+    .patch("/confirm-payment",
+        authentication,
+        validation(declareWinnerSchema),
+        raffle.confirmPayment
+    )
+
 module.exports = router
