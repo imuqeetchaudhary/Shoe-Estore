@@ -4,10 +4,12 @@ const schema = mongoose.Schema
 const orderHistorySchema = new schema({
     userId: {
         type: schema.Types.ObjectId,
+        ref: "User",
         required: true
     },
     articleId: {
         type: schema.Types.ObjectId,
+        ref: "Article",
         required: true
     },
     sizeSelected: {
