@@ -209,3 +209,15 @@ Admin's Route
 User's Route
 
 - raffle/get-all-for-user :get (Protected route. Token required)
+
+### to declare a winner
+
+Admin's Route
+
+- raffle/declare-winner :patch (Protected route. Token required)
+
+```
+{
+    raffleId:
+}
+```

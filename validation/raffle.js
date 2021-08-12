@@ -13,3 +13,7 @@ exports.addRaffleSchema = yup.object({
     size: yup.number().required(),
     instagram: yup.string(),
 })
+
+exports.declareWinnerSchema = yup.object({
+    raffleId: yup.string().required(),
+})

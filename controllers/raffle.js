@@ -52,3 +52,27 @@ exports.getRaffleForAuthUser = promise(async (req, res) => {
     res.status(200).json({ raffle })
 })
 
+exports.declareWinner = promise(async (req, res) => {
+    const body = req.body
+
+    const raffle = await Raffle.findById(body.raffleId).populate("userId")
+    if (!raffle) throw new Exceptions.NotFound("No raffle found")
+    console.log(raffle);
+
+    const updateRaffle = await Raffle.updateOne(
+        { _id: body.raffleId },
+        {
+            $set: {
+                isWinner: true
+            }
+        }
+    )
+
+    const email = raffle.userId.email
+    const name = raffle.userId.name
+    const message = `Dear ${name}! Congratulations! You've won the raffle. Kindly visit the website to buy the article.`
+
+    sendMail(email, message)
+
+    res.status(200).json({ message: "Successfully updated winning status" })
+})
