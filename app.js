@@ -5,6 +5,7 @@ const user = require("./routes/user")
 const article = require("./routes/article")
 const contact = require("./routes/contact")
 const orderhistory = require("./routes/orderhistory")
+const raffle = require("./routes/raffle")
 const cors = require("cors")
 
 dbConnect();
@@ -23,5 +24,6 @@ app.use("/user", user)
 app.use("/article", article)
 app.use("/contact", contact)
 app.use("/order-history", orderhistory)
+app.use("/raffle", raffle)
 
 module.exports = { app }

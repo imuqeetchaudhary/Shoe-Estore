@@ -4,6 +4,12 @@ const schema = mongoose.Schema
 const raffleSchema = new schema({
     userId: {
         type: schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
+    articleId: {
+        type: schema.Types.ObjectId,
+        ref: "Article",
         required: true
     },
     firstName: {
@@ -37,6 +43,18 @@ const raffleSchema = new schema({
     instagram: {
         type: String,
         require: true
+    },
+    totalPrice: {
+        type: Number,
+        require: true
+    },
+    isWinner: {
+        type: Boolean,
+        default: null
+    },
+    isPaid: {
+        type: Boolean,
+        default: null
     }
 })
 
