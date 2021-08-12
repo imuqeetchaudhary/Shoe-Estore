@@ -10,6 +10,6 @@ exports.addRaffleSchema = yup.object({
     country: yup.string().required(),
     postCode: yup.string().required(),
     gender: yup.string().required(),
-    size: yup.string().required(),
+    size: yup.number().required(),
     instagram: yup.string(),
 })

@@ -48,6 +48,8 @@
 
 ### to add a new article
 
+Admin's Route
+
 - article/add :post
 
 ```
@@ -65,13 +67,19 @@
 
 ### to get a raffle
 
+User's Route
+
 - article/get-raffle :get (Protected route. Token required)
 
 ### to get all sneakers
 
+User's Route
+
 - article/get-all-sneakers :get (Protected route. Token required)
 
 ### to get a single article
+
+User's Route
 
 - article/get-single :post (Protected route. Token required)
 
@@ -85,6 +93,8 @@
 
 ### to add a new contact message
 
+User's Route
+
 - contact/add :post
 
 ```
@@ -95,9 +105,13 @@
 
 ### to get all contact messages
 
+Admin's Route
+
 - contact/get-all :get (Protected route. Token required)
 
 ### to get a single contact message
+
+Admin's Route
 
 - contact/get-single :post (Protected route. Token required)
 
@@ -110,6 +124,8 @@
 ## Routes for Order Histories
 
 ### to create a new order history
+
+User's Route
 
 - order-history/add :post (Protected route. Token required)
 
@@ -124,6 +140,8 @@
 
 ### to confirm payment status
 
+User's Route
+
 - order-history/confirm-payment :patch (Protected route. Token required)
 
 ```
@@ -134,18 +152,48 @@
 
 ### to get all order histories
 
+Admin's Route
+
 - order-history/get-all :get (Protected route. Token required)
 
 ### to get all order histories for a specific authentic user
 
+User's Route
+
 - order-history/get-all-for-auth-user :get (Protected route. Token required)
 
 ### to get a single order history
+
+User's Route
 
 - order-history/get-single :post (Protected route. Token required)
 
 ```
 {
     orderHistoryId:
+}
+```
+
+## Routes for Raffle
+
+### to fill a raffle form
+
+User's Route
+
+- raffle/add-form :post (Protected route. Token required)
+
+```
+{
+    articleId:
+    firstName:
+    lastName:
+    email:
+    address:
+    city:
+    country:
+    postCode:
+    gender:
+    size:
+    instagram:
 }
 ```
