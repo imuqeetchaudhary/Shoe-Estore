@@ -23,7 +23,7 @@ exports.getAllRaffles = promise(async (req, res) => {
 })
 
 exports.getAllSneakers = promise(async (req, res) => {
-    const articles = await Article.find({type: "sneakers"})
+    const articles = await Article.find({ type: "sneakers" })
     if (!articles) throw new Exceptions.NotFound("No articles found")
 
     res.status(200).json({ articles })
@@ -36,4 +36,22 @@ exports.getSingleArticle = promise(async (req, res) => {
     if (!article) throw new Exceptions.NotFound("No article found")
 
     res.status(200).json({ article })
+})
+
+exports.updateArticle = promise(async (req, res) => {
+    const body = req.body
+
+    await Article.updateOne(
+        { _id: body.articleId },
+        {
+            $set: {
+                ...body
+            }
+        }
+    )
+
+    const article = await Article.findById(body.articleId)
+    if (!article) throw new Exceptions.NotFound("No article found")
+
+    res.status(200).json({ message: "Successfully updated article", article })
 })
