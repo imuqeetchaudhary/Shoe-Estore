@@ -221,3 +221,15 @@ Admin's Route
     raffleId:
 }
 ```
+
+### to create a payment intend
+
+User's Route
+
+- raffle/create-payment-intend :post (Protected route. Token required)
+
+```
+{
+    raffleId:
+}
+```

@@ -3,6 +3,9 @@ const { Article } = require("../db/models/article")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
 const { sendMail } = require("../middlewares/sendMail")
+const stripe = require("stripe")(
+    "sk_test_51J1POvClkiKKoyU1EwrqRkPchsMA2eXdwSeI7VCQiqCOzOVwqOWoWGS8qCEj1fVQA7WCx1nnoeJD3KfPJHEE0XOG00uMs4G6yS"
+)
 
 exports.addRaffleForm = promise(async (req, res) => {
     const body = req.body
@@ -75,4 +78,26 @@ exports.declareWinner = promise(async (req, res) => {
     sendMail(email, message)
 
     res.status(200).json({ message: "Successfully updated winning status" })
+})
+
+exports.createPaymentIntend = promise(async (req, res) => {
+    const body = req.body
+
+    const raffle = await Raffle.findById(body.raffleId)
+    if (!raffle) throw new Exceptions.NotFound("No raffle found")
+
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: (raffle.totalPrice * 100),
+        currency: "usd",
+        metadata: {
+            integration_check: "accept_a_payment_for_shoe_estore",
+        },
+        receipt_email: req.user.email,
+        payment_method_types: ["card"],
+    })
+
+    res.status(200).json({
+        message: "Successfully created payment intend",
+        client_secret: paymentIntent["client_secret"],
+    })
 })
