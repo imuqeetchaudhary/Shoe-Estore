@@ -42,14 +42,14 @@ exports.addRaffleForm = promise(async (req, res) => {
 })
 
 exports.getAllRaffles = promise(async (req, res) => {
-    const raffle = await Raffle.find()
+    const raffle = await Raffle.find().populate("userId").populate("articleId")
     if (!raffle) throw new Exceptions.NotFound("No raffle found")
 
     res.status(200).json({ raffle })
 })
 
 exports.getRaffleForAuthUser = promise(async (req, res) => {
-    const raffle = await Raffle.find({ userId: req.user._id, isWinner: true })
+    const raffle = await Raffle.find({ userId: req.user._id, isWinner: true }).populate("userId").populate("articleId")
     if (!raffle) throw new Exceptions.NotFound("No raffle found")
 
     res.status(200).json({ raffle })
