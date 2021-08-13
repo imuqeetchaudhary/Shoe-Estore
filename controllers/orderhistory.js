@@ -64,13 +64,13 @@ exports.confirmPayment = promise(async (req, res) => {
 })
 
 exports.getAllHistories = promise(async (req, res) => {
-    const orderhistory = await OrderHistory.find()
+    const orderhistory = await OrderHistory.find().populate("articleId").populate("userId")
     if (!orderhistory) throw new Exceptions.NotFound("No receipt found")
     res.status(200).json({ orderhistory })
 })
 
 exports.getAllHistoriesForAnySpecificUser = promise(async (req, res) => {
-    const orderhistory = await OrderHistory.find({ userId: req.user._id }).populate("articleId")
+    const orderhistory = await OrderHistory.find({ userId: req.user._id }).populate("articleId").populate("userId")
     if (!orderhistory) throw new Exceptions.NotFound("No receipt found")
     res.status(200).json({ orderhistory })
 })
