@@ -15,7 +15,7 @@ exports.addMessage = promise(async (req, res) => {
 })
 
 exports.getAllMessages = promise(async (req, res) => {
-    const contacts = await Contact.find()
+    const contacts = await Contact.find().populate("userId")
     if (!contacts) throw new Exceptions.NotFound("No articles found")
 
     res.status(200).json({ contacts })
@@ -24,7 +24,7 @@ exports.getAllMessages = promise(async (req, res) => {
 exports.getSingleMessage = promise(async (req, res) => {
     const body = req.body
 
-    const contact = await Contact.findById(body.contactId)
+    const contact = await Contact.findById(body.contactId).populate("userId")
     if (!contact) throw new Exceptions.NotFound("No contact found")
 
     res.status(200).json({ contact })
