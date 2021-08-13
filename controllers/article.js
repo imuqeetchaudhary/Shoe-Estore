@@ -10,7 +10,7 @@ exports.addArticle = promise(async (req, res) => {
     const newArticle = new Article({
         ...body,
         image: req.file.filename,
-        // availableSizes: availableSizes
+        availableSizes: [body.availableSizes]
     })
     await newArticle.save()
     res.status(200).json({ message: "successfully added a new article", newArticle })
