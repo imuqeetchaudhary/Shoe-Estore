@@ -70,7 +70,7 @@ exports.getAllHistories = promise(async (req, res) => {
 })
 
 exports.getAllHistoriesForAnySpecificUser = promise(async (req, res) => {
-    const orderhistory = await OrderHistory.find({ userId: req.user._id })
+    const orderhistory = await OrderHistory.find({ userId: req.user._id }).populate("articleId")
     if (!orderhistory) throw new Exceptions.NotFound("No receipt found")
     res.status(200).json({ orderhistory })
 })
