@@ -37,7 +37,7 @@ const raffleSchema = new schema({
         require: true
     },
     size: {
-        type: Number,
+        type: String,
         require: true
     },
     instagram: {

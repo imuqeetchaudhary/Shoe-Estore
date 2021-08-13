@@ -5,12 +5,11 @@ const { promise } = require("../middlewares/promises")
 exports.addArticle = promise(async (req, res) => {
     const body = req.body
     // const availableSizes = ["6","7","8","9","10","11","12"]
-    console.log(body.availableSizes);
 
     const newArticle = new Article({
         ...body,
         image: req.file.filename,
-        availableSizes: [body.availableSizes]
+        // availableSizes: availableSizes
     })
     await newArticle.save()
     res.status(200).json({ message: "successfully added a new article", newArticle })
