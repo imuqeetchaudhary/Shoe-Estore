@@ -10,7 +10,7 @@ const { addArticleSchema, getSingleArticle, updateArticle } = require("../valida
 router
     .post("/add", validation(addArticleSchema), upload.single("image"), article.addArticle)
     .get("/get-raffle", authentication, article.getAllRaffles)
-    .get("/get-all-sneakers", authentication, article.getAllSneakers)
+    .get("/get-all-sneakers", article.getAllSneakers)
     .post("/get-single", authentication, validation(getSingleArticle), article.getSingleArticle)
     .patch("/update", authentication, validation(updateArticle), article.updateArticle)
     .delete("/delete", authentication, validation(getSingleArticle), article.deleteArticle)
